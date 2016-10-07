@@ -1,34 +1,42 @@
 {
-    "name": "selectline-statusbar",
-    "displayName": "selectline-statusbar",
-    "description": "Displays selected line count in status bar",
-    "version": "0.0.1",
-    "publisher": "tomoki1207",
-    "engines": {
-        "vscode": "^1.5.0"
-    },
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "onCommand:extension.sayHello"
-    ],
-    "main": "./extension",
-    "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
-    },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "eslint": "^3.6.0",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+  "name": "selectline-statusbar",
+  "displayName": "selectline-statusbar",
+  "description": "Displays selected lines count in status bar",
+  "version": "0.0.1",
+  "publisher": "tomoki1207",
+  "engines": {
+    "vscode": "^1.5.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "commands": []
+  },
+  "configuration": {
+    "type": "object",
+    "title": "Select line configuration",
+    "properties": {
+      "selectline.displayFormat": {
+        "type": "string",
+        "default": "Selected %d Lines",
+        "description": "Display format: according to http://nodejs.jp/nodejs.org_ja/docs/v0.10/api/util.html#util_util_format_format"
+      }
     }
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.40",
+    "eslint": "^3.7.1",
+    "mocha": "^2.3.3",
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0"
+  }
 }
