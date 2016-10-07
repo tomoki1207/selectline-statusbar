@@ -24,7 +24,7 @@
       "selectline.displayFormat": {
         "type": "string",
         "default": "Selected %d Lines",
-        "description": "Display format: according to http://nodejs.jp/nodejs.org_ja/docs/v0.10/api/util.html#util_util_format_format"
+        "description": "Display format: according to https://nodejs.org/api/util.html#util_util_format_format"
       }
     }
   },
