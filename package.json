@@ -1,9 +1,10 @@
 {
   "name": "selectline-statusbar",
-  "displayName": "selectline-statusbar",
+  "displayName": "Select Line Status Bar",
   "description": "Displays selected lines count in status bar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "tomoki1207",
+  "icon": "icon.svg",
   "repository": {
     "type": "git",
     "url": "https://github.com/tomoki1207/selectline-statusbar"
@@ -23,16 +24,29 @@
   ],
   "main": "./extension",
   "contributes": {
-    "commands": []
-  },
-  "configuration": {
-    "type": "object",
-    "title": "Select line configuration",
-    "properties": {
-      "selectline.displayFormat": {
-        "type": "string",
-        "default": "Selected %d Lines",
-        "description": "Display format: according to https://nodejs.org/api/util.html#util_util_format_format"
+    "commands": [],
+    "configuration": {
+      "type": "object",
+      "title": "Select line configuration",
+      "properties": {
+        "selectline.displayFormat": {
+          "type": "string",
+          "default": "Selected %d Lines",
+          "description": "Display format: according to https://nodejs.org/api/util.html#util_util_format_format"
+        },
+        "selectline.alignment": {
+          "type": "array",
+          "enum": [
+            "left", "right"
+          ],
+          "default": "left",
+          "description": "Controls the alignment of the selected lines. It can either show on the left or right of the status bar."
+        },
+        "selectline.statusbarPriority": {
+          "type": "number",
+          "default": 100,
+          "description": "The priority of the selected lines in status bar. Higher values mean the item should be shown more to the left."
+        }
       }
     }
   },
