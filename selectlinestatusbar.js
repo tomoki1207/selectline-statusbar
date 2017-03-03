@@ -7,14 +7,24 @@ const
 
 class SelectLineStatusBar {
   constructor() {
-    this._statusBar = vscode.window.createStatusBarItem();
-    vscode.window.onDidChangeActiveTextEditor(e => this.displaySelectedLineCount(e.selections));
-    vscode.window.onDidChangeTextEditorSelection(e => this.displaySelectedLineCount(e.selections));
-    vscode.window.onDidChangeTextEditorViewColumn(e => this.displaySelectedLineCount(e.selections));
+    let alignment = vscode.StatusBarAlignment.Left;
+    let alignConfig = vscode.workspace.getConfiguration('selectline').alignment;
+    if (alignConfig) {
+      if (alignConfig == 'left') {
+        alignment = vscode.StatusBarAlignment.Left;
+      } else if (alignConfig == 'right') {
+        alignment = vscode.StatusBarAlignment.Right;
+      }
+    }
+    this._statusBar = vscode.window.createStatusBarItem(alignment, vscode.workspace.getConfiguration('selectline').statusbarPriority || 100);
+    vscode.window.onDidChangeActiveTextEditor(e => e && this.displaySelectedLineCount(e.selections));
+    vscode.window.onDidChangeTextEditorSelection(e => e && this.displaySelectedLineCount(e.selections));
+    vscode.window.onDidChangeTextEditorViewColumn(e => e && this.displaySelectedLineCount(e.selections));
     this._statusBar.show();
   }
   displaySelectedLineCount(selections) {
-    let selectedcount = selections.reduce((pre, selection) => pre + selection.end.line - selection.start.line + 1, 0);
+    console.log(selections);
+    let selectedcount = selections.reduce((pre, selection) => pre + selection.end.line - selection.start.line + (selection.end.character == 0 ? 0 : 1), 0);
     this._statusBar.text = 1 < selectedcount ? util.format(vscode.workspace.getConfiguration('selectline').displayFormat || DEFAULT_FORMAT, selectedcount) : '';
   }
   dispose() {
