@@ -35,7 +35,7 @@
           "description": "Display format: according to https://nodejs.org/api/util.html#util_util_format_format"
         },
         "selectline.alignment": {
-          "type": "array",
+          "type": "string",
           "enum": [
             "left", "right"
           ],
