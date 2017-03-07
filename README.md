@@ -45,6 +45,7 @@ You can change the display in the following steps.
 ## Change log
 - 0.0.2 (2017-3-7): Add an icon and some configurations
 - 0.0.1 (2016-10-6): Initial release
+- 0.0.2 (2017-3-3): Add an icon and some configurations
 
 ## License
 Please see [LICENSE]("./LICENSE").
