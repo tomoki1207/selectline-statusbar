@@ -27,7 +27,20 @@ class SelectLineStatusBar {
     });
   }
   displaySelectedLineCount(selections) {
-    let selectedcount = selections.reduce((pre, selection) => pre + selection.end.line - selection.start.line + (selection.end.character == 0 ? 0 : 1), 0);
+    let selectedcount = 0;
+    let last_line = -1;
+    for (const selection of selections) {
+      let last = selection.end.line;
+      if (!selection.isEmpty && selection.end.character === 0) {
+        --last;
+      }
+      if (last <= last_line) {
+        continue;
+      }
+      const first = Math.max(last_line, selection.start.line);
+      selectedcount += last - first + 1;
+      last_line = last;
+    }
     if (selectedcount > 1) {
       this._statusBar.text = util.format(this.displayFormat, selectedcount);
       this._statusBar.show();
